@@ -63,10 +63,15 @@ augroup ft_fugitive
 augroup END
 
 " Solarized
-set t_Co=256
 if has('gui_running')
     set background=light
 else
     set background=dark
 endif
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 16
 colorscheme solarized
+
+" Vimelette
+let g:debug_vimelette = 1
