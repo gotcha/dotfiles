@@ -1,0 +1,10 @@
+download-cache/*
+downloads/*
+eggs/*
+extends-cache/*
+zope/*
+!download-cache/.gitkeep
+!downloads/.gitkeep
+!eggs/.gitkeep
+!extends-cache/.gitkeep
+!zope/.gitkeep
