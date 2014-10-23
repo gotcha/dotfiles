@@ -11,6 +11,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'gotcha/vimelette'
 Plugin 'tpope/vim-vinegar'
 Plugin 'altercation/vim-colors-solarized'
+" lines and prompts
+Bundle 'bling/vim-airline'
+Bundle 'edkolev/promptline.vim'
+Bundle 'edkolev/tmuxline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,3 +79,6 @@ colorscheme solarized
 
 " Vimelette
 let g:debug_vimelette = 1
+
+" Airline
+let g:airline_powerline_fonts = 1
