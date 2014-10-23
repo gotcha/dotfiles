@@ -925,6 +925,8 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSFontPanelPreviewHeight</key>
+	<real>0.0</real>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/tmp/it/mbadolato-iTerm2-Color-Schemes-fd97e4b/schemes</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -933,6 +935,8 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>495 254 800 353 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>269 128 924 485 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -1182,7 +1186,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<real>0.89999997615814209</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -1486,11 +1490,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>Menlo-Regular 14</string>
+			<string>AnonymicePowerline 16</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Menlo-Regular 14</string>
+			<string>Menlo-Regular 16</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
