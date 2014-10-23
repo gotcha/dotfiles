@@ -12,9 +12,10 @@ Plugin 'gotcha/vimelette'
 Plugin 'tpope/vim-vinegar'
 Plugin 'altercation/vim-colors-solarized'
 " lines and prompts
-Bundle 'bling/vim-airline'
-Bundle 'edkolev/promptline.vim'
-Bundle 'edkolev/tmuxline.vim'
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/promptline.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'jlanzarotta/bufexplorer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,7 +49,6 @@ set undofile " persist undos
 set undodir=~/tmp/gotcha-dotfiles/vim/undos// " but don't clutter $PWD with them
 
 " Fugitive
-
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gw :Gwrite<cr>
@@ -82,3 +82,8 @@ let g:debug_vimelette = 1
 
 " Airline
 let g:airline_powerline_fonts = 1
+
+" Bufexplorer
+map <F4> :BufExplorer<CR>
+imap <F4> <Esc><F4>
+vmap <F4> <Esc><F4>
