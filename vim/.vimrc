@@ -11,11 +11,18 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'gotcha/vimelette'
 Plugin 'tpope/vim-vinegar'
 Plugin 'altercation/vim-colors-solarized'
+" robot framework syntax
+Plugin 'mfukar/robotframework-vim'
 " lines and prompts
 Plugin 'bling/vim-airline'
 Plugin 'edkolev/promptline.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'rizzatti/dash.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'rodjek/vim-puppet'
+Plugin 'junegunn/vim-after-object'
+Plugin 'michaeljsmith/vim-indent-object'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,16 +44,20 @@ set tw=79
 set ruler
 let mapleader=","
 
-if !isdirectory($HOME . "/tmp/gotcha-dotfiles/vim/backups")
-    call mkdir($HOME . "/tmp/gotcha-dotfiles/vim/backups", "p")
+let backups_directory = $HOME . "/dotfiles/tmp/vim/backups"
+if !isdirectory(backups_directory)
+    call mkdir(backups_directory, "p")
+    echom "made dir " . backups_directory
 endif
-if !isdirectory($HOME . "/tmp/gotcha-dotfiles/vim/undos")
-    call mkdir($HOME . "/tmp/gotcha-dotfiles/vim/undos", "p")
+let undos_directory = $HOME . "/dotfiles/tmp/vim/undos"
+if !isdirectory(undos_directory)
+    call mkdir(undos_directory, "p")
+    echom "made dir " . undos_directory
 endif
 set backup " make backups
-set backupdir=~/tmp/gotcha-dotfiles/vim/backups// " but don't clutter $PWD with them
+let &backupdir=backups_directory " but don't clutter $PWD with them
 set undofile " persist undos
-set undodir=~/tmp/gotcha-dotfiles/vim/undos// " but don't clutter $PWD with them
+let &undodir=undos_directory " but don't clutter $PWD with them
 
 " Fugitive
 nnoremap <leader>gd :Gdiff<cr>
@@ -84,6 +95,33 @@ let g:debug_vimelette = 1
 let g:airline_powerline_fonts = 1
 
 " Bufexplorer
-map <F4> :BufExplorer<CR>
-imap <F4> <Esc><F4>
-vmap <F4> <Esc><F4>
+nnoremap <leader>b :BufExplorer<cr>
+inoremap <leader>b <Esc>:BufExplorer<cr>
+vnoremap <leader>b <Esc>:BufExplorer<cr>
+
+" Dash
+function! s:doc(cmd)
+  if exists(':Dash')
+    return a:cmd
+  endif
+  return 'K'
+endfunction
+
+nmap <expr> K <SID>doc("\<Plug>DashSearch")
+nmap <expr> <Leader>K <SID>doc("\<Plug>DashGlobalSearch")
+
+
+let g:netrw_list_hide = ".*\.pyc$,.*\.pyo$,.*\.swp$"
+
+" Wildmenu completion 
+
+set wildmenu
+set wildmode=list:longest
+
+set wildignore+=.hg,.git,.svn " Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.sw? " Vim swap files
+set wildignore+=*.DS_Store " OSX bullshit
+set wildignore+=*.pyc,*.pyo " Python byte code
+set wildignore+=*.mo " Compiled gettext
