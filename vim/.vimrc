@@ -55,9 +55,10 @@ if !isdirectory(undos_directory)
     echom "made dir " . undos_directory
 endif
 set backup " make backups
-let &backupdir=backups_directory " but don't clutter $PWD with them
+let &backupdir=backups_directory . '//' " but don't clutter $PWD with them
+let &directory=backups_directory . '//' " but don't clutter $PWD with them
 set undofile " persist undos
-let &undodir=undos_directory " but don't clutter $PWD with them
+let &undodir=undos_directory . '//' " but don't clutter $PWD with them
 
 " Fugitive
 nnoremap <leader>gd :Gdiff<cr>
