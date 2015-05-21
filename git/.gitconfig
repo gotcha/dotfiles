@@ -1,0 +1,12 @@
+[user]
+	name = Godefroid Chapelle
+	email = gotcha@bubblenet.be
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/gotcha/.gitignore_global
+[alias]
+	co = checkout
+	st = status
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
