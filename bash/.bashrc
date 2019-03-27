@@ -68,26 +68,49 @@ alias fkill='fzf_kill'
 complete -C /usr/local/bin/vault vault
 eval "$(direnv hook bash)"
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 line_between_commands() {
-    for (( i=0 ; i<\$COLUMNS ; i++ )); do echo -ne = ; done 
+    for (( i=0 ; i<$COLUMNS ; i++ )); do echo -ne "=" ; done
 }
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && .  "/usr/local/etc/profile.d/bash_completion.sh"
+
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+function Color() {
+  echo "\[$(tput setaf $1)\]"
+}
+function ResetColor() {
+  echo "\[$(tput sgr0)\]"
+}
+
+function bash_prompt() {
+    local last_status=$?
+    local reset=$(ResetColor)
+
+    local failure="✘"
+    local success="✔"
+
+    if [[ "$last_status" != "0" ]]; then
+        last_status="$(Color 5)$failure$reset"
+    else
+        last_status="$(Color 2)$success$reset"
+    fi
+
+    local common="[\u@\h \W]"
+    echo "$last_status$common$(git_branch)\$ "
+}
+
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
 case "$TERM" in
 xterm*|rxvt*|screen-256color*)
-  if ! [[ "$PROMPT_COMMAND" =~ "do echo -ne" ]]; then
-    export PROMPT_COMMAND=" history -a ; for (( i=0 ; i<\$COLUMNS ; i++ )); do echo -ne = ; done ; $PROMPT_COMMAND"
+  if ! [[ "$PROMPT_COMMAND" =~ "line_between_commands" ]]; then
+     export PROMPT_COMMAND='PS1=$(bash_prompt); history -a ; line_between_commands;'
   fi
    ;;
 *)
    ;;
 esac
-
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && .  "/usr/local/etc/profile.d/bash_completion.sh"
-
-git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-export PS1="[\u@\h \W]\$(git_branch)\$ "
