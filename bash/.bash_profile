@@ -1,9 +1,9 @@
+echo "sourcing profile"
+ssh-add
 source ~/.bashrc
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 source ~/private/bashrc
 export EDITOR=vim
-if [ -e /Users/gotcha/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/gotcha/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Eternal bash history.
 # ---------------------
@@ -16,6 +16,7 @@ export HISTTIMEFORMAT="[%F %T] "
 # file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
 export HISTFILE=~/.bash_eternal_history
-# Force prompt to write history after every command.
-# http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+if [ -e /Users/gotcha/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/gotcha/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export PATH="$HOME/.cargo/bin:$PATH"

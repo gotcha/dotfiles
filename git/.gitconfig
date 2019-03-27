@@ -10,3 +10,5 @@
 	st = status
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[http]
+	sslVerify = false

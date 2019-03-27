@@ -5,9 +5,24 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-apathy'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'wikitopian/hardmode'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'w0rp/ale'
 Plugin 'gotcha/vimelette'
 Plugin 'tpope/vim-vinegar'
 Plugin 'altercation/vim-colors-solarized'
@@ -18,11 +33,20 @@ Plugin 'bling/vim-airline'
 Plugin 'edkolev/promptline.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-obsession'
 Plugin 'nvie/vim-flake8'
 Plugin 'rodjek/vim-puppet'
-Plugin 'junegunn/vim-after-object'
+" text objects
 Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'wellle/targets.vim'
+Plugin 'roman/golden-ratio'
+Plugin 'elmcast/elm-vim'
+Plugin 'yggdroot/indentline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'wincent/ferret'
+Plugin 'junegunn/gv.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -114,7 +138,7 @@ nmap <expr> <Leader>K <SID>doc("\<Plug>DashGlobalSearch")
 
 let g:netrw_list_hide = ".*\.pyc$,.*\.pyo$,.*\.swp$"
 
-" Wildmenu completion 
+" Wildmenu completion
 
 set wildmenu
 set wildmode=list:longest
@@ -126,3 +150,23 @@ set wildignore+=*.sw? " Vim swap files
 set wildignore+=*.DS_Store " OSX bullshit
 set wildignore+=*.pyc,*.pyo " Python byte code
 set wildignore+=*.mo " Compiled gettext
+
+set relativenumber
+set number
+
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
+imap jk <Esc>
+
+" elm
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+let g:elm_syntastic_show_warnings = 1
+let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 1
+let g:elm_jump_to_error = 1
+
+autocmd BufRead,BufNewFile *.zcml :set ft=xml 
