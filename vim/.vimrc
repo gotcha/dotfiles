@@ -47,6 +47,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'wincent/ferret'
 Plugin 'junegunn/gv.vim'
+Plugin 'aymericbeaumet/symlink.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
