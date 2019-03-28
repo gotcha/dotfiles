@@ -114,3 +114,6 @@ xterm*|rxvt*|screen-256color*)
 *)
    ;;
 esac
+
+# direnv
+eval "$(direnv hook bash)"
