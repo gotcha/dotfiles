@@ -1,6 +1,7 @@
 [user]
 	name = Godefroid Chapelle
 	email = gotcha@bubblenet.be
+	signingkey = 482A0995DF266CC4
 [push]
 	default = simple
 [core]
