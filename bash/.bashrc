@@ -1,11 +1,3 @@
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH=$HOME/software/fullrelease/bin:$PATH
-export PATH=$HOME/software/flake8/bin:$PATH
-export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:$HOME/software/gsl/src
 export RIPGREP_CONFIG_PATH=/Users/gotcha/.ripgreprc
@@ -66,54 +58,34 @@ fzf_kill() {
 alias fkill='fzf_kill'
 
 complete -C /usr/local/bin/vault vault
-eval "$(direnv hook bash)"
 
+source /Users/gotcha/co/just-bash-completion/just-completion.bash
 
 line_between_commands() {
     for (( i=0 ; i<$COLUMNS ; i++ )); do echo -ne "=" ; done
 }
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && .  "/usr/local/etc/profile.d/bash_completion.sh"
-
-git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+function starship_pre(){
+    # Force prompt to write history after every command.
+    history -a
+    line_between_commands
 }
 
-function Color() {
-  echo "\[$(tput setaf $1)\]"
-}
-function ResetColor() {
-  echo "\[$(tput sgr0)\]"
-}
+starship_precmd_user_func="starship_pre"
+eval "$(starship init bash)"
 
-function bash_prompt() {
-    local last_status=$?
-    local reset=$(ResetColor)
+# Created by `pipx` on 2021-09-22 08:48:48
+export PATH="$PATH:/Users/gotcha/.local/bin"
+eval "$(register-python-argcomplete pipx)"
 
-    local failure="✘"
-    local success="✔"
+eval "$(zoxide init bash)"
 
-    if [[ "$last_status" != "0" ]]; then
-        last_status="$(Color 5)$failure$reset"
-    else
-        last_status="$(Color 2)$success$reset"
-    fi
+source /Users/gotcha/.config/broot/launcher/bash/br
 
-    local common="[\u@\h \W]"
-    echo "$last_status$common$(git_branch)\$ "
-}
+eval "$(thefuck --alias)"
+export MCFLY_FUZZY=2
+eval "$(mcfly init bash)"
 
-# Force prompt to write history after every command.
-# http://superuser.com/questions/20900/bash-history-loss
-case "$TERM" in
-xterm*|rxvt*|screen-256color*)
-  if ! [[ "$PROMPT_COMMAND" =~ "line_between_commands" ]]; then
-     export PROMPT_COMMAND='PS1=$(bash_prompt); history -a ; line_between_commands;'
-  fi
-   ;;
-*)
-   ;;
-esac
 
 # direnv
 eval "$(direnv hook bash)"

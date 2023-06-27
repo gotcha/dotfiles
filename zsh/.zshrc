@@ -87,3 +87,9 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
+
+source /Users/gotcha/Library/Preferences/org.dystroy.broot/launcher/bash/br
+# added by travis gem
+[ ! -s /Users/gotcha/.travis/travis.sh ] || source /Users/gotcha/.travis/travis.sh
+
+source /Users/gotcha/.config/broot/launcher/bash/br

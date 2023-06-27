@@ -6,6 +6,7 @@
 	default = simple
 [core]
 	excludesfile = /Users/gotcha/.gitignore_global
+        pager = delta
 [alias]
 	co = checkout
 	st = status
@@ -13,3 +14,25 @@
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [http]
 	sslVerify = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+        required = true
+[mergetool]
+        prompt = false
+[merge]
+        tool = kdiff3
+        conflictstyle = diff3
+[mergetool "kdiff3"]
+        cmd = kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+
+[interactive]
+            diffFilter = delta --color-only
+
+[delta]
+            navigate = true
+
+[diff]
+            colorMoved = default
+
